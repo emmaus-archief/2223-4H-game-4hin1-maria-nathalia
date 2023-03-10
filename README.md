@@ -46,6 +46,7 @@ https://emmauscollege.github.io/informatica/game/
   7. Pixel art
 
 Extra stuff
+  
   8. Extra mini games for more points
   9. Clothing and accesoiries
   10. Secret easter eggs
