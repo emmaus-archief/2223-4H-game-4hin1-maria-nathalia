@@ -76,13 +76,13 @@ var tekenAlles = function() {
   rect (0,0,2560,250);
 
   fill ("red")
-  rect (0, 250, 2560, 250 )
+  rect (0, 250, 2560, 300 )
 
   fill ("red")
-rect (0, 1100, 1650, 250)
+rect (0, 1100, 1650, 300)
 
-  fill ("")
-
+  fill ("red")
+rect (2100,1100, 800, 300)
   
   // vijand
 
