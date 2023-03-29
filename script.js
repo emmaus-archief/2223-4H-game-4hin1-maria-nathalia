@@ -46,12 +46,34 @@ var beweegAlles = function() {
     if (spelerY > 1290) {
       speed = 0;
   }
+    //sprint when shift is down
+  if (keyIsDown(65)&&keyIsDown(16)){
+    spelerX = spelerX -4;
+  };
+  if (keyIsDown(68)&&keyIsDown(16)){
+    spelerX = spelerX +4;
+  };
+  if (keyIsDown(87)&&keyIsDown(16)){
+    spelerY = spelerY -4;
+  };
+  if (keyIsDown(83)&&keyIsDown(16)){
+    spelerY = spelerY +4;
+  };
+    
+  //borders
+  if (spelerY > 1080) {
+      spelerY = 1080;
+  }
+  if (spelerY < 470) {
+    spelerY = 470;
+  }
+  if (spelerX > 2490) { 
+    spelerX = 2490; 
+  }
 
-  if (spelerX > 2490) 
-  { spelerX = 2490; }
-
-  if (spelerX < 60) 
-  { spelerX = 60; }
+  if (spelerX < 60) {
+    spelerX = 60; 
+  }
   
   // vijand
 
@@ -77,16 +99,17 @@ var verwerkBotsing = function() {
  * Tekent spelscherm
  */
 var tekenAlles = function() {
-  // achtergrond
+  // background
   background("green");
-  fill ("blue"); 
+  fill ("blue"); //backdrop
   rect (0,0,2560,250);
 
-  fill ("red")
+  fill ("red"); //upper counter 
   rect (0, 250, 2560, 300 )
 
-  fill ("red")
-rect (0, 1100, 2560, 300)
+  fill("orange");  //upper counter top
+  rect (0, 250, 2560, 150)
+
 
   
   
@@ -96,11 +119,17 @@ rect (0, 1100, 2560, 300)
 
   // speler
   fill("white");
-  rect(spelerX - 70, spelerY - 70, 140, 140);
+  rect(spelerX - 70, spelerY - 70, 140, 140); //body
+  ellipse(spelerX, spelerY - 100, 150, 150);  //head
   fill("black");
-  ellipse(spelerX, spelerY, 20, 20);
+  ellipse(spelerX, spelerY, 20, 20);  //centerpoint
 
   // punten en health
+
+//forground  
+fill ("red");
+rect (0, 1100, 2560, 300)  //down right counter
+rect (2100,1100, 800, 300)
 
 };
 
