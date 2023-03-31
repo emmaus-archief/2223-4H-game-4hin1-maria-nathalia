@@ -21,8 +21,8 @@ https://emmauscollege.github.io/informatica/game/
 
 ## Stappenplan
 - 1. Make moving character
-     * Create background (the room most of the game will be played in)
-     * Make bounds; the cat cant walk through kitchen counters and out of the room (yet)
+     * **X** Create background (the room most of the game will be played in)
+     * **X** Make bounds; the cat cant walk through kitchen counters and out of the room (yet)
      * **X** Draw character with AWSD keys to move 
      * Add walking animation to the character (temporary color change in object that we programmed to walk to indicate the changes in moving)
 
