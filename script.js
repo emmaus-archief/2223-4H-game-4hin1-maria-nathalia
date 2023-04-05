@@ -1,20 +1,7 @@
-/* Game opdracht
-   Informatica - Emmauscollege Rotterdam
-   Template voor een game in JavaScript met de p5 library
-
-   Begin met dit template voor je game opdracht,
-   voeg er je eigen code aan toe.
- */
-
-/*
- * instellingen om foutcontrole van je code beter te maken 
- */
 ///<reference path="p5.global-mode.d.ts" />
 "use strict"
 
-/* ********************************************* */
-/* globale variabelen die je gebruikt in je game */
-/* ********************************************* */
+//global variables
 const SPELEN = 1;
 const GAMEOVER = 2;
 var spelStatus = SPELEN;
@@ -24,10 +11,7 @@ var spelerY = 600; // y-positie van speler
 
 
 
-/* ********************************************* */
-/* functies die je gebruikt in je game           */
-/* ********************************************* */
-
+//functions
 /**
  * Updatet globale variabelen met posities van speler, vijanden en kogels
  */
@@ -74,12 +58,9 @@ var beweegAlles = function() {
   if (spelerX < 60) {
     spelerX = 60; 
   }
-
-  // vijand
-
-  // kogel
 };
 
+//variables of objects and player that are drawn
 var kitchenCounterUp = function () {
   fill ("blue"); //backdrop
   rect (0,0,2560,250);
@@ -106,66 +87,43 @@ var kitchenCounterDown = function () {
   
 }
 
-var kitchenUtensils = function () {
+var drawKitchenUtensil = function () {
   fill ("purple");
-  ellipse (1000,250,250,200);  //bowl?
+  ellipse (1000,250,250,200);
 }
 
-var verwerkBotsing = function() {
 
-  // botsing speler tegen vijand
-
-  // botsing kogel tegen vijand
-
-  // update punten en health
-
-};
-
-/**
- * Tekent spelscherm
- */
+//draws everything
 var tekenAlles = function() {
-  // background
   background("green");
 
   }
 
+//scene checker/scene changes
 var checkGameOver = function() {
   // check of HP 0 is , of tijd op is, of ...
   return false;
 };
 
-/* ********************************************* */
-/* setup() en draw() functies / hoofdprogramma   */
-/* ********************************************* */
+//if mouse is clicked on button, draw scene 2
 
-/**
- * setup
- * de code in deze functie wordt één keer uitgevoerd door
- * de p5 library, zodra het spel geladen is in de browser
- */
+// setup() en draw() functies / hoofdprogramma
+// setup, p5 library
 function setup() {
-  // Maak een canvas (rechthoek) waarin je je speelveld kunt tekenen
+  //canvas
   createCanvas(2560, 1350);
-
-  // Kleur de achtergrond blauw, zodat je het kunt zien
   background('green');
 }
 
-/**
- * draw
- * de code in deze functie wordt 50 keer per seconde
- * uitgevoerd door de p5 library, nadat de setup functie klaar is
- */
+// draw function, after setup
 function draw() {
   if (spelStatus === SPELEN) {
     beweegAlles();
-    verwerkBotsing();
     tekenAlles();
     kitchenCounterUp();
+    drawKitchenUtensil();
     drawPlayer();
     kitchenCounterDown();
-    kitchenUtensils();
     if (checkGameOver()) {
       spelStatus = GAMEOVER;
     }
