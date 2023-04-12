@@ -10,7 +10,11 @@ var spelerX = 600; // x-positie van speler
 var spelerY = 600; // y-positie van speler
 
 var cooking1X = 1000;
+var cooking1Y = 250;
 var cooking1Clicks = 0;
+
+/* var mouseX
+var mouseY */
 
 
 //functions
@@ -60,6 +64,11 @@ var beweegAlles = function() {
   if (spelerX < 60) {
     spelerX = 60; 
   }
+
+ /* if (mouseX = cooking1X && mouseY = cooking1Y) {
+    cooking1Clicks +1;
+  }
+  */
 };
 
 //variables of objects and player that are drawn
@@ -91,7 +100,7 @@ var kitchenCounterDown = function () {
 
 var drawKitchenUtensil = function () {
   fill ("purple");
-  ellipse (cooking1X,250,250,200);
+  ellipse (cooking1X, cooking1Y, 250,200);
 }
 
 
