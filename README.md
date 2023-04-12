@@ -31,6 +31,19 @@ https://emmauscollege.github.io/informatica/game/
      * Give them a onClick function that changes the animation of the object (again a color change instead of the actual art, which will be added at the end of the game)
      * Make character be able to only to click on object when standing near it
 
+2a. sequence maken
+* Zorg dat je 10x moet klikken op de eerste cooking gear
+* daarna 10x op de tweede
+* daarna 10x op de derde
+* daarna game over
+  
+2b tijd bouwen
+* start tijd bij 0
+* zet tijd op scherm
+* laat tijd lopen
+* toon tijd in gameover scherm
+
+
   3. Multiple POVs
      * Add a different scene when clicking on a cooking gear
      * Draw the different scenes

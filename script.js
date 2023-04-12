@@ -9,6 +9,8 @@ var spelStatus = SPELEN;
 var spelerX = 600; // x-positie van speler
 var spelerY = 600; // y-positie van speler
 
+var cooking1X = 1000;
+var cooking1Clicks = 0;
 
 
 //functions
@@ -89,7 +91,7 @@ var kitchenCounterDown = function () {
 
 var drawKitchenUtensil = function () {
   fill ("purple");
-  ellipse (1000,250,250,200);
+  ellipse (cooking1X,250,250,200);
 }
 
 
