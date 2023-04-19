@@ -12,9 +12,10 @@ var spelerY = 600; // y-positie van speler
 var cooking1X = 1000;
 var cooking1Y = 250;
 var cooking1Clicks = 0;
+var mouseIsPressedBefore = false;
 
-/* var mouseX
-var mouseY */
+var mouseX = 0;
+var mouseY = 0;
 
 
 //functions
@@ -53,23 +54,28 @@ var beweegAlles = function() {
   //borders
   if (spelerY > 1080) {
       spelerY = 1080;
-  }
+  };
   if (spelerY < 470) {
     spelerY = 470;
-  }
+  };
   if (spelerX > 2490) { 
     spelerX = 2490; 
-  }
+  };
 
   if (spelerX < 60) {
     spelerX = 60; 
+ };
+ 
+// clicks op recept onderdelen
+ if (mouseIsPressed && !mouseIsPressedBefore &&
+     mouseX - cooking1X < 50 &&  mouseX - cooking1X > -50 &&
+     mouseY - cooking1Y < 50 && mouseY - cooking1Y > -50) {
+         cooking1Clicks +=1; 
   }
 
- /* if (mouseX = cooking1X && mouseY = cooking1Y) {
-    cooking1Clicks +1;
-  }
-  */
+  mouseIsPressedBefore = mouseIsPressed;
 };
+
 
 //variables of objects and player that are drawn
 var kitchenCounterUp = function () {
@@ -99,15 +105,17 @@ var kitchenCounterDown = function () {
 }
 
 var drawKitchenUtensil = function () {
-  fill ("purple");
+  fill (218, 66, 245);
   ellipse (cooking1X, cooking1Y, 250,200);
+  fill (0,0,0);
+  textSize(100);
+  text (cooking1Clicks, 200,200);
 }
 
 
 //draws everything
 var tekenAlles = function() {
   background("green");
-
   }
 
 //scene checker/scene changes
