@@ -4,6 +4,7 @@
 //global variables
 const SPELEN = 1;
 const GAMEOVER = 2;
+const UITLEG = 3;
 var spelStatus = SPELEN;
 
 var spelerX = 600; // x-positie van speler
@@ -76,7 +77,11 @@ var beweegAlles = function() {
   mouseIsPressedBefore = mouseIsPressed;
 };
 
-
+var countClicks = function () {
+  if (cooking1Clicks === 15) {
+    console.log("enoughclicks");
+  }
+}
 //variables of objects and player that are drawn
 var kitchenCounterUp = function () {
   fill ("blue"); //backdrop
@@ -138,6 +143,7 @@ function setup() {
 function draw() {
   if (spelStatus === SPELEN) {
     beweegAlles();
+    countClicks();
     tekenAlles();
     kitchenCounterUp();
     drawKitchenUtensil();
@@ -146,9 +152,14 @@ function draw() {
     if (checkGameOver()) {
       spelStatus = GAMEOVER;
     }
+    console.log ("play");
   }
   if (spelStatus === GAMEOVER) {
-    // teken game-over scherm
+    console.log ("gameover");
 
+  }
+  if (spelStatus === UITLEG) {
+    // teken uitleg scherm
+    console.log ("uitleg");
   }
 }
