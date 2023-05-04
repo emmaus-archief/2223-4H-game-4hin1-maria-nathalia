@@ -5,7 +5,7 @@
 const SPELEN = 1;
 const GAMEOVER = 2;
 const UITLEG = 3;
-var spelStatus = SPELEN;
+var spelStatus = UITLEG;
 
 var spelerX = 600; // x-positie van speler
 var spelerY = 600; // y-positie van speler
@@ -112,6 +112,7 @@ var kitchenCounterDown = function () {
 var drawKitchenUtensil = function () {
   fill (218, 66, 245);
   ellipse (cooking1X, cooking1Y, 250,200);
+
   fill (0,0,0);
   textSize(100);
   text (cooking1Clicks, 200,200);
@@ -156,10 +157,21 @@ function draw() {
   }
   if (spelStatus === GAMEOVER) {
     console.log ("gameover");
-
+    textSize (75);
+    fill ("white");
+    text ("game over ghogohgohogoh", 200, 100);
+    if (keyIsDown(13)) {
+      spelStatus = UITLEG; 
+    }
   }
   if (spelStatus === UITLEG) {
-    // teken uitleg scherm
-    console.log ("uitleg");
+  console.log ("uitleg");
+    textSize (75);
+    fill ("white");
+    text ("woaoaoaoaoaooaaooaoaoaoaoao", 200, 100);
+    if (keyIsDown(13)) {
+      spelerX = 600;
+      spelStatus = SPELEN;
+    }
   }
 }
