@@ -18,6 +18,8 @@ var mouseIsPressedBefore = false;
 var mouseX = 0;
 var mouseY = 0;
 
+var timer = 500; // 10 seconde
+
 
 //functions
 /**
@@ -65,8 +67,11 @@ var beweegAlles = function() {
 
   if (spelerX < 60) {
     spelerX = 60; 
- };
- 
+  };
+
+   // timer aanpassen
+    timer = timer - 1;
+  
 // clicks op recept onderdelen
  if (mouseIsPressed && !mouseIsPressedBefore &&
      mouseX - cooking1X < 50 &&  mouseX - cooking1X > -50 &&
@@ -77,11 +82,23 @@ var beweegAlles = function() {
   mouseIsPressedBefore = mouseIsPressed;
 };
 
+//if (mouseIsPressed && !mouseIsPressedBefore && mouseX > 100 && mouseX < 400 && mouseY > 900 && mouseY < 1150) {
+//  setInterval = 0;
+//}
+
 var countClicks = function () {
   if (cooking1Clicks === 15) {
     console.log("enoughclicks");
   }
 }
+
+var startButton = function () {
+  fill ("pink")
+  rect (100,900,300,150);
+  fill ("black")
+  text ("start", 125, 1000)
+}
+  
 //variables of objects and player that are drawn
 var kitchenCounterUp = function () {
   fill ("blue"); //backdrop
@@ -121,16 +138,19 @@ var drawKitchenUtensil = function () {
 
 //draws everything
 var tekenAlles = function() {
-  background("green");
+  text("timer:"+timer, 600, 100);
   }
 
 //scene checker/scene changes
 var checkGameOver = function() {
   // check of HP 0 is , of tijd op is, of ...
+  if (timer <= 0) {
+    return true;
+  }
   return false;
 };
 
-//if mouse is clicked on button, draw scene 2
+
 
 // setup() en draw() functies / hoofdprogramma
 // setup, p5 library
@@ -145,11 +165,12 @@ function draw() {
   if (spelStatus === SPELEN) {
     beweegAlles();
     countClicks();
-    tekenAlles();
     kitchenCounterUp();
     drawKitchenUtensil();
     drawPlayer();
     kitchenCounterDown();
+    startButton();
+    tekenAlles();
     if (checkGameOver()) {
       spelStatus = GAMEOVER;
     }
