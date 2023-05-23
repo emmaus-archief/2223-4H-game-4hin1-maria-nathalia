@@ -1,11 +1,20 @@
 ///<reference path="p5.global-mode.d.ts" />
 "use strict"
 
+function preload() {
+  img = loadImage('silly cat.png');
+  img2 = loadImage ("gosig.png");
+}
+
+
 //global variables
 const SPELEN = 1;
 const GAMEOVER = 2;
 const UITLEG = 3;
 var spelStatus = UITLEG;
+
+var img;
+var img2;
 
 var spelerX = 600; // x-positie van speler
 var spelerY = 600; // y-positie van speler
@@ -26,6 +35,7 @@ var timer = 500; // 10 seconde
  * Updatet globale variabelen met posities van speler, vijanden en kogels
  */
 var beweegAlles = function() {
+  background ("green");
   // player
   if (keyIsDown(65)){
     spelerX = spelerX -2;
@@ -82,9 +92,6 @@ var beweegAlles = function() {
   mouseIsPressedBefore = mouseIsPressed;
 };
 
-//if (mouseIsPressed && !mouseIsPressedBefore && mouseX > 100 && mouseX < 400 && mouseY > 900 && mouseY < 1150) {
-//  setInterval = 0;
-//}
 
 var countClicks = function () {
   if (cooking1Clicks === 15) {
@@ -178,18 +185,14 @@ function draw() {
   }
   if (spelStatus === GAMEOVER) {
     console.log ("gameover");
-    textSize (75);
-    fill ("white");
-    text ("game over ghogohgohogoh", 200, 100);
-    if (keyIsDown(13)) {
+      image(img2, 0, 0);
+    if (keyIsDown(32)) {
       spelStatus = UITLEG; 
     }
   }
   if (spelStatus === UITLEG) {
   console.log ("uitleg");
-    textSize (75);
-    fill ("white");
-    text ("woaoaoaoaoaooaaooaoaoaoaoao", 200, 100);
+    image(img, 0, 0, 2560, 1280);
     if (keyIsDown(13)) {
       spelerX = 600;
       spelStatus = SPELEN;
