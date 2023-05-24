@@ -63,3 +63,22 @@ Extra stuff
   8. Extra mini games for more points
   9. Clothing and accesoiries
   10. Secret easter eggs
+
+
+
+
+
+
+start up screen
+
+the rules are very simple, try to have enough mouse clicks on the cooking gear before the timer runs out! the more time left, the more points you earn! 
+
+
+game over screen
+'GAME OVER' 
+
+'try clicking even faster next time!'
+
+
+win screen
+'good job! try again for an even higher score'
