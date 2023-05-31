@@ -2,19 +2,21 @@
 "use strict"
 
 function preload() {
-  img = loadImage('silly cat.png');
+  img = loadImage("sillycat.png");
   img2 = loadImage ("gosig.png");
+  img3 = loadImage ("bowl.png");
 }
-
 
 //global variables
 const SPELEN = 1;
 const GAMEOVER = 2;
 const UITLEG = 3;
+const UITLEG2 = 4;
 var spelStatus = UITLEG;
 
 var img;
 var img2;
+var img3;
 
 var spelerX = 600; // x-positie van speler
 var spelerY = 600; // y-positie van speler
@@ -94,17 +96,11 @@ var beweegAlles = function() {
 
 
 var countClicks = function () {
-  if (cooking1Clicks === 15) {
+  if (cooking1Clicks === 35) {
     console.log("enoughclicks");
   }
 }
 
-var startButton = function () {
-  fill ("pink")
-  rect (100,900,300,150);
-  fill ("black")
-  text ("start", 125, 1000)
-}
   
 //variables of objects and player that are drawn
 var kitchenCounterUp = function () {
@@ -151,10 +147,12 @@ var tekenAlles = function() {
 //scene checker/scene changes
 var checkGameOver = function() {
   // check of HP 0 is , of tijd op is, of ...
-  if (timer <= 0) {
+  if (timer <= 0 && cooking1Clicks < 35) {
     return true;
   }
-  return false;
+
+  if (timer <= 0 && cooking1Clicks > 35)
+    spelStatus = UITLEG2;
 };
 
 
@@ -176,7 +174,6 @@ function draw() {
     drawKitchenUtensil();
     drawPlayer();
     kitchenCounterDown();
-    startButton();
     tekenAlles();
     if (checkGameOver()) {
       spelStatus = GAMEOVER;
@@ -189,14 +186,27 @@ function draw() {
     if (keyIsDown(32)) {
       spelStatus = UITLEG; 
     }
+    
   }
   if (spelStatus === UITLEG) {
   console.log ("uitleg");
     image(img, 0, 0, 2560, 1280);
     if (keyIsDown(13)) {
       spelerX = 600;
+      cooking1Clicks = 0;
+      timer = 500;
+      spelStatus = SPELEN;
+    }
+
+  if (spelStatus === UITLEG2) {
+  console.log ("uitleg2");
+    image(img3, 0, 0, 2560, 1280);
+    if (keyIsDown(13)) {
+      spelerX = 600;
+      cooking1Clicks = 0;
+      timer = 500;
       spelStatus = SPELEN;
     }
   }
-}
+};
 
