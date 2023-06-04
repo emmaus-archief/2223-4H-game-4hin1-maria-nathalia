@@ -5,18 +5,28 @@ function preload() {
   img = loadImage("sillycat.png");
   img2 = loadImage("gosig.png");
   img3 = loadImage("bowl.png");
+  img4 = loadImage("backdrop tile.png");
+  img5 = loadImage("woodenpanel.png");
+  img6 = loadImage("pink top.png");
+  img7 = loadImage("cat head.png");
 }
 
 // Global variables
 const SPELEN = 1;
+const SPELEN2 = 6;
 const GAMEOVER = 2;
 const UITLEG = 3;
 const UITLEG2 = 4;
+const WIN = 5;
 var spelStatus = UITLEG;
 
 var img;
 var img2;
 var img3;
+var img4;
+var img5;
+var img6;
+var img7;
 
 var spelerX = 600; // x-positie van speler
 var spelerY = 600; // y-positie van speler
@@ -29,7 +39,7 @@ var mouseIsPressedBefore = false;
 var mouseX = 0;
 var mouseY = 0;
 
-var timer = 500; // 10 seconden
+var timer = 10000; // 10 seconden
 
 // Functions
 /**
@@ -106,20 +116,24 @@ var countClicks = function () {
 
 // Variables of objects and player that are drawn
 var kitchenCounterUp = function () {
-  fill("blue"); // backdrop
-  rect(0, 0, 2560, 250);
+  /*fill("blue"); // backdrop
+  rect(0, 0, 2560, 250);*/
+  image(img4, 0, 0);
+  
+  /*fill("red");
+  rect(0, 250, 2560, 300);*/
+  image(img5, 0, 250);
 
-  fill("red");
-  rect(0, 250, 2560, 300);
-
-  fill("orange"); // upper counter top
-  rect(0, 250, 2560, 150);
+  /*fill("orange"); // upper counter top
+  rect(0, 250, 2560, 150);*/
+  image(img6, 0, 250);
 };
 
 var drawPlayer = function () {
   fill("white");
-  rect(spelerX - 70, spelerY - 70, 140, 140); // body
-  ellipse(spelerX, spelerY - 100, 150, 150); // head
+  rect(spelerX - 80, spelerY - 80, 150, 150); // body
+  /*ellipse(spelerX, spelerY - 90, 160, 160); // head*/
+  image(img7, spelerX - 80, spelerY - 210);
   fill("black");
   ellipse(spelerX, spelerY, 20, 20); // centerpoint
 };
@@ -127,7 +141,6 @@ var drawPlayer = function () {
 var kitchenCounterDown = function () {
   fill("red");
   rect(0, 1100, 2560, 300); // down right counter
-  rect(2100, 1100, 800, 300);
 };
 
 var drawKitchenUtensil = function () {
@@ -150,8 +163,8 @@ var checkGameOver = function () {
   if (timer <= 0 && cooking1Clicks < 35) {
     return true;
   }
-
-  if (timer <= 0 && cooking1Clicks > 35) spelStatus = UITLEG2;
+  if (timer <= 0 && cooking1Clicks >= 35) 
+    spelStatus = WIN;
 };
 
 // setup() and draw() functions / hoofdprogramma
@@ -180,18 +193,15 @@ function draw() {
   if (spelStatus === GAMEOVER) {
     console.log("gameover");
     image(img2, 0, 0);
-    if (keyIsDown(32)) {
+    if (keyIsDown(8)) {
       spelStatus = UITLEG;
     }
   }
   if (spelStatus === UITLEG) {
     console.log("uitleg");
     image(img, 0, 0, 2560, 1280);
-    if (keyIsDown(13)) {
-      spelerX = 600;
-      cooking1Clicks = 0;
-      timer = 500;
-      spelStatus = SPELEN;
+    if (keyIsDown(32)) {
+      spelStatus = UITLEG2;
     }
   }
 
@@ -201,9 +211,35 @@ function draw() {
     if (keyIsDown(13)) {
       spelerX = 600;
       cooking1Clicks = 0;
-      timer = 500;
+      timer = 10000;
+      spelStatus = SPELEN;
+    }
+  }
+  
+  if (spelStatus === WIN) {
+    console.log("win");
+    image(img3, 0, 0, 2560, 1280);
+    if (keyIsDown(13)) {
+      spelerX = 600;
+      cooking1Clicks = 0;
+      timer = 10000;
       spelStatus = SPELEN;
     }
   }
 }
+  /*function draw() {
+  if (spelStatus === SPELEN2) {
+    beweegAlles();
+    countClicks();
+    kitchenCounterUp();
+    drawKitchenUtensil2();
+    drawPlayer();
+    kitchenCounterDown();
+    tekenAlles();
+    if (checkGameOver()) {
+      spelStatus = GAMEOVER;
+    }
+    console.log("play2");
+  }
+}*/
 

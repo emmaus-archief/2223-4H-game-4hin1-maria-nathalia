@@ -28,7 +28,6 @@ https://emmauscollege.github.io/informatica/game/
 
   2. Make responsive cooking gear
      * Draw 5(?) types of cooking gear
-     * Give them a onClick function that changes the animation of the object (again a color change instead of the actual art, which will be added at the end of the game)
      * Make character be able to only to click on object when standing near it
 
 2a. sequence maken
