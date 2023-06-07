@@ -2,13 +2,14 @@
 "use strict";
 
 function preload() {
-  img = loadImage("sillycat.png");
-  img2 = loadImage("gosig.png");
-  img3 = loadImage("bowl.png");
+  img = loadImage("uitleg1.png");
+  img2 = loadImage("gameover.png");
+  img3 = loadImage("uitleg2.png");
   img4 = loadImage("backdrop tile.png");
   img5 = loadImage("woodenpanel.png");
   img6 = loadImage("pink top.png");
   img7 = loadImage("cat head.png");
+  img8 = loadImage("win.png");
 }
 
 // Global variables
@@ -27,6 +28,7 @@ var img4;
 var img5;
 var img6;
 var img7;
+var img8;
 
 var spelerX = 600; // x-positie van speler
 var spelerY = 600; // y-positie van speler
@@ -211,14 +213,17 @@ function draw() {
     if (keyIsDown(13)) {
       spelerX = 600;
       cooking1Clicks = 0;
-      timer = 10000;
+      timer = 1000;
       spelStatus = SPELEN;
     }
   }
   
   if (spelStatus === WIN) {
     console.log("win");
-    image(img3, 0, 0, 2560, 1280);
+    image(img8, 0, 0, 2560, 1280);
+    fill ("black");
+    text("your score: " + cooking1Clicks, 100, 100);
+    text ("press enter to contuine", 100, 250);
     if (keyIsDown(13)) {
       spelerX = 600;
       cooking1Clicks = 0;
@@ -242,4 +247,3 @@ function draw() {
     console.log("play2");
   }
 }*/
-
