@@ -5,11 +5,11 @@ function preload() {
   img = loadImage("images/uitleg1.png");
   img2 = loadImage("images/gameover.png");
   img3 = loadImage("images/uitleg2.png");
-  img4 = loadImage("images/backdrop tile.png");
-  img5 = loadImage("images/woodenpanel.png");
-  img6 = loadImage("images/pink top.png");
-  img7 = loadImage("images/cat head.png");
-  img8 = loadImage("images/win.png");
+  img4 = loadImage("images/kitchenbackground.png");
+  img5 = loadImage("images/cat head.png");
+  img6 = loadImage("images/win.png");
+  img7 = loadImage("images/pastabowl.png");
+  img8 = loadImage("images/banner1.png")
 }
 
 // Global variables
@@ -114,51 +114,43 @@ var beweegAlles = function () {
   mouseIsPressedBefore = mouseIsPressed;
 };
 
-var countClicks = function () {
-  if (cooking1Clicks === 35) {
-    console.log("enoughclicks");
-  }
-};
-
 // Variables of objects and player that are drawn
 var kitchenCounterUp = function () {
-  /*fill("blue"); // backdrop
-  rect(0, 0, 2560, 250);*/
-  image(img4, 0, 0);
+  image(img4, 0, 0); //kitchen background
   
-  /*fill("red");
-  rect(0, 250, 2560, 300);*/
-  image(img5, 0, 250);
-
-  /*fill("orange"); // upper counter top
-  rect(0, 250, 2560, 150);*/
-  image(img6, 0, 250);
-
-  fill("blue");
-  rect (850, 550, 300, 150); //kitcjen mat
+  /*fill("blue");
+  rect (850, 580, 300, 150); //kitcjen mat*/
 };
 
 var drawPlayer = function () {
   fill("white");
   rect(spelerX - 80, spelerY - 80, 150, 150); // body
   /*ellipse(spelerX, spelerY - 90, 160, 160); // head*/
-  image(img7, spelerX - 80, spelerY - 210);
+  image(img5, spelerX - 80, spelerY - 210);
   fill("black");
   ellipse(spelerX, spelerY, 20, 20); // centerpoint
 };
 
 var kitchenCounterDown = function () {
-  fill("red");
-  rect(0, 1100, 2560, 300); // down right counter
+  /*fill("red");
+  rect(200, 900, 2160, 400); // down counter*/
+  image(img8, 200, 900);
 };
 
 var drawKitchenUtensil = function () {
-  fill(218, 66, 245);
-  ellipse(cooking1X, cooking1Y, 250, 200);
+  /*fill(218, 66, 245);
+  ellipse(cooking1X, cooking1Y, 250, 200);*/
+  image(img7, 875, 180); //bowl
 
   fill(0, 0, 0);
   textSize(100);
   text(cooking1Clicks, 200, 200);
+};
+
+var countClicks = function () {
+  if (cooking1Clicks === 35) {
+    console.log("enoughclicks");
+  }
 };
 
 // Draws everything
@@ -205,7 +197,7 @@ function draw() {
     image(img2, 0, 0);
     fill ("black");
     text("your score: " + cooking1Clicks, 100, 100);
-    text ("press enter to try again", 100, 250);
+    text ("press backspace to try again", 100, 250);
     if (keyIsDown(8)) {
       spelStatus = UITLEG;
     }
@@ -233,7 +225,8 @@ function draw() {
   
   if (spelStatus === WIN) {
     console.log("win");
-    image(img8, 0, 0, 2560, 1280);
+    background ("white");
+    image(img6, 0, 0, 2560, 1280);
     fill ("black");
     text("your score: " + cooking1Clicks, 100, 100);
     text ("press enter to contuine", 100, 250);
