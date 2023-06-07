@@ -2,23 +2,23 @@
 "use strict";
 
 function preload() {
-  img = loadImage("uitleg1.png");
-  img2 = loadImage("gameover.png");
-  img3 = loadImage("uitleg2.png");
-  img4 = loadImage("backdrop tile.png");
-  img5 = loadImage("woodenpanel.png");
-  img6 = loadImage("pink top.png");
-  img7 = loadImage("cat head.png");
-  img8 = loadImage("win.png");
+  img = loadImage("images/uitleg1.png");
+  img2 = loadImage("images/gameover.png");
+  img3 = loadImage("images/uitleg2.png");
+  img4 = loadImage("images/backdrop tile.png");
+  img5 = loadImage("images/woodenpanel.png");
+  img6 = loadImage("images/pink top.png");
+  img7 = loadImage("images/cat head.png");
+  img8 = loadImage("images/win.png");
 }
 
 // Global variables
 const SPELEN = 1;
-const SPELEN2 = 6;
 const GAMEOVER = 2;
 const UITLEG = 3;
 const UITLEG2 = 4;
 const WIN = 5;
+const LEVELS = 6;
 var spelStatus = UITLEG;
 
 var img;
@@ -102,7 +102,11 @@ var beweegAlles = function () {
     mouseX - cooking1X < 50 &&
     mouseX - cooking1X > -50 &&
     mouseY - cooking1Y < 50 &&
-    mouseY - cooking1Y > -50
+    mouseY - cooking1Y > -50 && 
+    spelerX > 850 &&
+    spelerX < 1150 &&
+    spelerY > 450 &&
+    spelerY < 700
   ) {
     cooking1Clicks += 1;
   }
@@ -129,6 +133,9 @@ var kitchenCounterUp = function () {
   /*fill("orange"); // upper counter top
   rect(0, 250, 2560, 150);*/
   image(img6, 0, 250);
+
+  fill("blue");
+  rect (850, 550, 300, 150); //kitcjen mat
 };
 
 var drawPlayer = function () {
@@ -194,13 +201,18 @@ function draw() {
   }
   if (spelStatus === GAMEOVER) {
     console.log("gameover");
+    background("black");
     image(img2, 0, 0);
+    fill ("black");
+    text("your score: " + cooking1Clicks, 100, 100);
+    text ("press enter to try again", 100, 250);
     if (keyIsDown(8)) {
       spelStatus = UITLEG;
     }
   }
   if (spelStatus === UITLEG) {
     console.log("uitleg");
+    background("#b6ddff");
     image(img, 0, 0, 2560, 1280);
     if (keyIsDown(32)) {
       spelStatus = UITLEG2;
@@ -209,6 +221,7 @@ function draw() {
 
   if (spelStatus === UITLEG2) {
     console.log("uitleg2");
+    background("#dbb6ff")
     image(img3, 0, 0, 2560, 1280);
     if (keyIsDown(13)) {
       spelerX = 600;
