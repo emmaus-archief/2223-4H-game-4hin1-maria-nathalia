@@ -213,7 +213,7 @@ function draw() {
 
   if (spelStatus === UITLEG2) {
     console.log("uitleg2");
-    background("#dbb6ff")
+    background("#b6b6ff")
     image(img3, 0, 0, 2560, 1280);
     if (keyIsDown(13)) {
       spelerX = 600;
