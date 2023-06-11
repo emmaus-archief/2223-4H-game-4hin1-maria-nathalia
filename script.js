@@ -148,7 +148,7 @@ var drawKitchenUtensil = function () {
 };
 
 var countClicks = function () {
-  if (cooking1Clicks === 35) {
+  if (cooking1Clicks === 45) {
     console.log("enoughclicks");
   }
 };
@@ -161,10 +161,10 @@ var tekenAlles = function () {
 // Scene checker/scene changes
 var checkGameOver = function () {
   // Check of HP 0 is, of tijd op is, of ...
-  if (timer <= 0 && cooking1Clicks < 35) {
+  if (timer <= 0 && cooking1Clicks < 45) {
     return true;
   }
-  if (timer <= 0 && cooking1Clicks >= 35) 
+  if (timer <= 0 && cooking1Clicks >= 45) 
     spelStatus = WIN;
 };
 
@@ -233,7 +233,7 @@ function draw() {
     if (keyIsDown(13)) {
       spelerX = 600;
       cooking1Clicks = 0;
-      timer = 10000;
+      timer = 1000;
       spelStatus = SPELEN;
     }
   }
