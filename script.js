@@ -6,11 +6,10 @@ function preload() {
   img2 = loadImage("images/gameover.png");
   img3 = loadImage("images/uitleg2.png");
   img4 = loadImage("images/kitchenbackground.png");
-  img5 = loadImage("images/cat head.png");
   img6 = loadImage("images/win.png");
   img7 = loadImage("images/pastabowl.png");
   img8 = loadImage("images/banner1.png");
-  img9 = loadImage("images/catbody.png");
+  img9 = loadImage("images/catback.png")
   img10 = loadImage("images/cat.png");
 }
 
@@ -22,6 +21,7 @@ const UITLEG2 = 4;
 const WIN = 5;
 const LEVELS = 6;
 var spelStatus = UITLEG;
+var currentLevel = 0;
 
 var img;
 var img2;
@@ -34,12 +34,13 @@ var img8;
 var img9;
 var img10; 
 
-var spelerX = 600; // x-positie van speler
-var spelerY = 600; // y-positie van speler
+var spelerX = 500; // x-positie van speler
+var spelerY = 500; // y-positie van speler
 
 var cooking1X = 1000;
 var cooking1Y = 250;
 var cooking1Clicks = 0;
+var targetClicks = 45;
 var mouseIsPressedBefore = false;
 
 var mouseX = 0;
@@ -47,6 +48,54 @@ var mouseY = 0;
 
 var timer = 10000; // 10 seconden
 
+// arrays, levels
+
+var levels = [
+{ //introduction 
+  cooking1Clicks: 0,
+  timer: 10000,
+  targetClicks: 45,
+  spelerX: 500,  //start position
+  spelerY: 500
+  },
+
+{ //level 1
+  timer: 3400,
+  cooking1Clicks: 0,
+  targetClicks: 20,
+  spelerX: 300,
+  spelerY: 240
+  }
+
+];
+
+// level manager
+
+
+function loadLevel(levelIndex) {
+  const level = levels[levelIndex];
+  timer = level.timer;
+  spelerX = level.spelerX;
+  spelerY = level.spelerY;
+  cooking1Clicks = level.cooking1Clicks;
+  targetClicks = level.targetClicks;
+}
+
+function nextLevel() {
+  currentLevel++;
+  if (currentLevel < levels.length) {
+    loadLevel(currentLevel);
+    spelStatus = SPELEN;
+  } else {
+    // All levels completed
+    spelStatus = WIN;
+  }
+}
+
+function restartLevel() {
+  loadLevel(currentLevel);
+  spelStatus = SPELEN;
+}
 // Functions
 /**
  * Updatet globale variabelen met posities van speler, vijanden en kogels
@@ -125,32 +174,32 @@ var kitchenCounterUp = function () {
   /*fill("blue");
   rect (850, 580, 300, 150); //kitcjen mat*/
 };
+    
+var drawKitchenUtensil = function () {
+    image(img7, 875, 180); //bowl
+  }
 
 var drawPlayer = function () {
   fill("white");
-  /*rect(spelerX - 80, spelerY - 80, 150, 150); // body
-  ellipse(spelerX, spelerY - 90, 160, 160); // head
-  image(img9, spelerX - 80, spelerY - 80); //body
-  image(img5, spelerX - 80, spelerY - 210); //head
-  rect(spelerX - 150, spelerY - 200, 200, 350);*/
-  image(img10, spelerX - 150, spelerY - 200);
+  if (spelerY > 650) {
+    image(img10, spelerX - 150, spelerY - 220); //front of the cat
+  }
+  if (spelerY < 650) {
+    image(img9, spelerX - 150, spelerY - 220); //back of the cat
+  }
+  
 };
 
-var kitchenCounterDown = function () {
-  /*fill("red");
-  rect(200, 900, 2160, 400); // down counter*/
+var banner = function () {
   image(img8, 200, 900);
-};
-
-var drawKitchenUtensil = function () {
-  /*fill(218, 66, 245);
-  ellipse(cooking1X, cooking1Y, 250, 200);*/
-  image(img7, 875, 180); //bowl
-
-  fill(0, 0, 0);
+  fill("black");
+  textSize(70);
+  text("timer:" + timer, 250, 1100);
   textSize(100);
-  text(cooking1Clicks, 200, 200);
+  text(cooking1Clicks, 300, 200);
 };
+
+
 
 var countClicks = function () {
   if (cooking1Clicks === 45) {
@@ -158,18 +207,13 @@ var countClicks = function () {
   }
 };
 
-// Draws everything
-var tekenAlles = function () {
-  text("timer:" + timer, 600, 100);
-};
 
-// Scene checker/scene changes
 var checkGameOver = function () {
   // Check of HP 0 is, of tijd op is, of ...
-  if (timer <= 0 && cooking1Clicks < 45) {
+  if (timer <= 0 && cooking1Clicks < targetClicks) {
     return true;
   }
-  if (timer <= 0 && cooking1Clicks >= 45) 
+  if (timer <= 0 && cooking1Clicks >= targetClicks) 
     spelStatus = WIN;
 };
 
@@ -178,7 +222,7 @@ var checkGameOver = function () {
 function setup() {
   // Canvas
   createCanvas(2560, 1350);
-  background("green");
+  background("white");
 }
 
 // Draw function, after setup
@@ -189,8 +233,7 @@ function draw() {
     kitchenCounterUp();
     drawKitchenUtensil();
     drawPlayer();
-    kitchenCounterDown();
-    tekenAlles();
+    banner();
     if (checkGameOver()) {
       spelStatus = GAMEOVER;
     }
