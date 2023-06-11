@@ -24,11 +24,11 @@ https://emmauscollege.github.io/informatica/game/
      * **X** Create background (the room most of the game will be played in)
      * **X** Make bounds; the cat cant walk through kitchen counters and out of the room (yet)
      * **X** Draw character with AWSD keys to move 
-     * Add walking animation to the character (temporary color change in object that we programmed to walk to indicate the changes in moving)
+  
 
   2. Make responsive cooking gear
      * Draw 5(?) types of cooking gear
-     * Make character be able to only to click on object when standing near it
+     * **X** Make character be able to only to click on object when standing near it
 
 2a. sequence maken
 * Zorg dat je 10x moet klikken op de eerste cooking gear
@@ -37,31 +37,18 @@ https://emmauscollege.github.io/informatica/game/
 * daarna game over
   
 2b tijd bouwen
-* start tijd bij 0
-* zet tijd op scherm
-* laat tijd lopen
-* toon tijd in gameover scherm
+* **X** start tijd bij 0
+* **X** zet tijd op scherm
+* **X** laat tijd lopen
+* **X** toon tijd in gameover scherm
 
 
-  3. Multiple POVs
-     * Add a different scene when clicking on a cooking gear
-     * Draw the different scenes
-     * Make playable cooking games - add a clicker to each function for example
-
-  4. Point system and NPC's
+  3. Point system and NPC's
      * Make cat NPC - objects that from tie to time come visit you, and when you click on them you will be able to see their randomly generated requests
 
 
-  5. Enemies; family
-  6. Expand world; more rooms/areas
-     * 
-  7. Pixel art
+  4.  * **X** Pixel art
 
-Extra stuff
-  
-  8. Extra mini games for more points
-  9. Clothing and accesoiries
-  10. Secret easter eggs
 
 
 

@@ -20,8 +20,7 @@ const GAMEOVER = 2;
 const UITLEG = 3;
 const UITLEG2 = 4;
 const WIN = 5;
-const LEVELS = 6;
-const SCREEN = 7;
+const SCREEN = 6;
 var spelStatus = SCREEN;
 
 var img;
@@ -35,8 +34,8 @@ var img8;
 var img9;
 var img10; 
 
-var spelerX = 700; // x-positie van speler
-var spelerY = 700; // y-positie van speler
+var spelerX = 700; // start x-position of player
+var spelerY = 700; // start y-position of player
 
 var cooking1X = 1000;
 var cooking1Y = 250;
@@ -47,7 +46,7 @@ var mouseIsPressedBefore = false;
 var mouseX = 0;
 var mouseY = 0;
 
-var timer = 10000; // 10 seconden
+var timer = 9000; 
 
 
 // Functions
@@ -102,7 +101,7 @@ var beweegAlles = function () {
   // timer aanpassen
   timer = timer - 1;
 
-  // clicks op recept onderdelen
+  // clicks on bowl
   if (
     mouseIsPressed &&
     !mouseIsPressedBefore &&
@@ -121,12 +120,10 @@ var beweegAlles = function () {
   mouseIsPressedBefore = mouseIsPressed;
 };
 
-// Variables of objects and player that are drawn
+// Variables of objects that are drawn
 var kitchenCounterUp = function () {
   image(img4, 0, 0); //kitchen background
   
-  /*fill("blue");
-  rect (850, 580, 300, 150); //kitcjen mat*/
 };
     
 var drawKitchenUtensil = function () {
@@ -148,15 +145,15 @@ var banner = function () {
   image(img8, 200, 900);
   fill("black");
   textSize(70);
-  text("timer:" + timer, 250, 1100);
+  text("timer:" + timer, 250, 1100); //dispplay of timer
   textSize(100);
-  text(cooking1Clicks, 300, 200);
+  text(cooking1Clicks, 300, 200); //display clicks
 };
 
 
 
 var countClicks = function () {
-  if (cooking1Clicks === 45) {
+  if (cooking1Clicks === targetClicks) {
     console.log("enoughclicks");
   }
 };
