@@ -6,10 +6,11 @@ function preload() {
   img2 = loadImage("images/gameover.png");
   img3 = loadImage("images/uitleg2.png");
   img4 = loadImage("images/kitchenbackground.png");
+  img5 = loadImage("images/screen.png");
   img6 = loadImage("images/win.png");
   img7 = loadImage("images/pastabowl.png");
   img8 = loadImage("images/banner1.png");
-  img9 = loadImage("images/catback.png")
+  img9 = loadImage("images/catback.png");
   img10 = loadImage("images/cat.png");
 }
 
@@ -20,8 +21,8 @@ const UITLEG = 3;
 const UITLEG2 = 4;
 const WIN = 5;
 const LEVELS = 6;
-var spelStatus = UITLEG;
-var currentLevel = 0;
+const SCREEN = 7;
+var spelStatus = SCREEN;
 
 var img;
 var img2;
@@ -34,8 +35,8 @@ var img8;
 var img9;
 var img10; 
 
-var spelerX = 500; // x-positie van speler
-var spelerY = 500; // y-positie van speler
+var spelerX = 700; // x-positie van speler
+var spelerY = 700; // y-positie van speler
 
 var cooking1X = 1000;
 var cooking1Y = 250;
@@ -48,54 +49,7 @@ var mouseY = 0;
 
 var timer = 10000; // 10 seconden
 
-// arrays, levels
 
-var levels = [
-{ //introduction 
-  cooking1Clicks: 0,
-  timer: 10000,
-  targetClicks: 45,
-  spelerX: 500,  //start position
-  spelerY: 500
-  },
-
-{ //level 1
-  timer: 3400,
-  cooking1Clicks: 0,
-  targetClicks: 20,
-  spelerX: 300,
-  spelerY: 240
-  }
-
-];
-
-// level manager
-
-
-function loadLevel(levelIndex) {
-  const level = levels[levelIndex];
-  timer = level.timer;
-  spelerX = level.spelerX;
-  spelerY = level.spelerY;
-  cooking1Clicks = level.cooking1Clicks;
-  targetClicks = level.targetClicks;
-}
-
-function nextLevel() {
-  currentLevel++;
-  if (currentLevel < levels.length) {
-    loadLevel(currentLevel);
-    spelStatus = SPELEN;
-  } else {
-    // All levels completed
-    spelStatus = WIN;
-  }
-}
-
-function restartLevel() {
-  loadLevel(currentLevel);
-  spelStatus = SPELEN;
-}
 // Functions
 /**
  * Updatet globale variabelen met posities van speler, vijanden en kogels
@@ -239,17 +193,22 @@ function draw() {
     }
     console.log("play");
   }
-  if (spelStatus === GAMEOVER) {
-    console.log("gameover");
-    background("black");
-    image(img2, 0, 0);
-    fill ("black");
-    text("your score: " + cooking1Clicks, 100, 100);
-    text ("press backspace to try again", 100, 250);
-    if (keyIsDown(8)) {
+  
+  if (spelStatus === SCREEN) {
+    console.log("beginning screen");
+    background("#b6ddff");
+    image(img5, 0, 0, 2560, 1280);
+    if (mouseIsPressed &&
+    !mouseIsPressedBefore &&
+    mouseX > 950 &&
+    mouseX < 1570 &&
+    mouseY > 630 &&
+    mouseY < 830 
+    ) {
       spelStatus = UITLEG;
     }
   }
+  
   if (spelStatus === UITLEG) {
     console.log("uitleg");
     background("#b6ddff");
@@ -258,6 +217,7 @@ function draw() {
       spelStatus = UITLEG2;
     }
   }
+  
 
   if (spelStatus === UITLEG2) {
     console.log("uitleg2");
@@ -270,6 +230,7 @@ function draw() {
       spelStatus = SPELEN;
     }
   }
+  
   
   if (spelStatus === WIN) {
     console.log("win");
@@ -285,19 +246,16 @@ function draw() {
       spelStatus = SPELEN;
     }
   }
-}
-  /*function draw() {
-  if (spelStatus === SPELEN2) {
-    beweegAlles();
-    countClicks();
-    kitchenCounterUp();
-    drawKitchenUtensil2();
-    drawPlayer();
-    kitchenCounterDown();
-    tekenAlles();
-    if (checkGameOver()) {
-      spelStatus = GAMEOVER;
+    
+      if (spelStatus === GAMEOVER) {
+    console.log("gameover");
+    background("black");
+    image(img2, 0, 0);
+    fill ("black");
+    text("your score: " + cooking1Clicks, 100, 100);
+    text ("press backspace to try again", 100, 250);
+    if (keyIsDown(8)) {
+      spelStatus = UITLEG;
     }
-    console.log("play2");
   }
-}*/
+}
