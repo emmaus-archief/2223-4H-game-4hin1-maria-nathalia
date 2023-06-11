@@ -9,7 +9,9 @@ function preload() {
   img5 = loadImage("images/cat head.png");
   img6 = loadImage("images/win.png");
   img7 = loadImage("images/pastabowl.png");
-  img8 = loadImage("images/banner1.png")
+  img8 = loadImage("images/banner1.png");
+  img9 = loadImage("images/catbody.png");
+  img10 = loadImage("images/cat.png");
 }
 
 // Global variables
@@ -29,6 +31,8 @@ var img5;
 var img6;
 var img7;
 var img8;
+var img9;
+var img10; 
 
 var spelerX = 600; // x-positie van speler
 var spelerY = 600; // y-positie van speler
@@ -124,11 +128,12 @@ var kitchenCounterUp = function () {
 
 var drawPlayer = function () {
   fill("white");
-  rect(spelerX - 80, spelerY - 80, 150, 150); // body
-  /*ellipse(spelerX, spelerY - 90, 160, 160); // head*/
-  image(img5, spelerX - 80, spelerY - 210);
-  fill("black");
-  ellipse(spelerX, spelerY, 20, 20); // centerpoint
+  /*rect(spelerX - 80, spelerY - 80, 150, 150); // body
+  ellipse(spelerX, spelerY - 90, 160, 160); // head
+  image(img9, spelerX - 80, spelerY - 80); //body
+  image(img5, spelerX - 80, spelerY - 210); //head
+  rect(spelerX - 150, spelerY - 200, 200, 350);*/
+  image(img10, spelerX - 150, spelerY - 200);
 };
 
 var kitchenCounterDown = function () {
