@@ -68,3 +68,11 @@ game over screen
 
 win screen
 'good job! try again for an even higher score'
+
+
+opracht voor nathalia:
+- voeg UITLEG3 toe
+- van uitleg 2 ga je naar uitleg 3
+- van uitleg 3 naar spelen ga je door op de s te drukken
+- in het uitleg3 scherm staat de tekst:"druk op s om te starten"
+- 

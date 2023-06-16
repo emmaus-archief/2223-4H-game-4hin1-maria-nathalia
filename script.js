@@ -12,6 +12,7 @@ function preload() {
   img8 = loadImage("images/banner1.png");
   img9 = loadImage("images/catback.png");
   img10 = loadImage("images/cat.png");
+  
 }
 
 // Global variables
@@ -22,6 +23,7 @@ const UITLEG2 = 4;
 const WIN = 5;
 const SCREEN = 6;
 var spelStatus = SCREEN;
+const UITLEG3 = 7
 
 var img;
 var img2;
@@ -210,7 +212,8 @@ function draw() {
     console.log("uitleg");
     background("#b6ddff");
     image(img, 0, 0, 2560, 1280);
-    if (keyIsDown(32)) {
+    if (keyIsDown(32)) 
+    {
       spelStatus = UITLEG2;
     }
   }
@@ -220,14 +223,24 @@ function draw() {
     console.log("uitleg2");
     background("#b6b6ff")
     image(img3, 0, 0, 2560, 1280);
-    if (keyIsDown(13)) {
+    if (keyIsDown(13)) 
+    {
+       spelStatus = UITLEG3;
+    }
+  }
+
+  if (spelStatus === UITLEG3) {
+    console.log("uitleg3");
+    background("#b6b6ff")
+    textSize(50);
+    text ("Druk 's' om te starten", 700, 500);
+    if (keyIsDown(83)) {
       spelerX = 600;
       cooking1Clicks = 0;
       timer = 1000;
       spelStatus = SPELEN;
     }
   }
-  
   
   if (spelStatus === WIN) {
     console.log("win");
